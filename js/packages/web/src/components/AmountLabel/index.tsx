@@ -3,6 +3,7 @@ import { Statistic } from 'antd';
 import { useSolPrice } from '../../contexts';
 import { formatUSD } from '@oyster/common';
 import { SolCircle } from '../Custom';
+import { isNull } from 'lodash';
 
 interface IAmountLabel {
   amount: number | string;
@@ -14,11 +15,12 @@ interface IAmountLabel {
   iconSize?: number;
   customPrefix?: JSX.Element;
   ended?: boolean;
+  amountNum?: number | null;
 }
 
 export const AmountLabel = (props: IAmountLabel) => {
   const {
-    amount: _amount,
+    amount,
     displayUSD = true,
     displaySOL = false,
     title = '',
@@ -27,18 +29,20 @@ export const AmountLabel = (props: IAmountLabel) => {
     iconSize = 38,
     customPrefix,
     ended,
+    amountNum: _amountNum,
   } = props;
-  const amount = typeof _amount === 'string' ? parseFloat(_amount) : _amount;
+
+  const amountNum = _amountNum === undefined ? (typeof amount === 'string' ? (parseFloat(amount)) : amount) : _amountNum || 0;
 
   const solPrice = useSolPrice();
 
   const [priceUSD, setPriceUSD] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    setPriceUSD(solPrice * amount);
+    setPriceUSD(solPrice * amountNum);
   }, [amount, solPrice]);
 
-  const PriceNaN = isNaN(amount);
+  const PriceNaN = isNaN(amountNum);
 
   return (
     <div style={{ display: 'flex', ...containerStyle }}>

@@ -1,6 +1,9 @@
 import { WRAPPED_SOL_MINT } from '@oyster/common';
+import { PublicKey } from '@solana/web3.js';
 
 export * from './labels';
 export * from './style';
 
-export const QUOTE_MINT = WRAPPED_SOL_MINT;
+// const TESTNET_MINT = new PublicKey('Bv6BDKcBWa3pbDVzjuuiFZfVQPj3zB31uVcpGv87XioU'); 
+const MAINNET_BETA_MINT = new PublicKey('KUPoVbJmipJb1M7xzQEND5w7u1BbmBytu9wZ2QPjQx4'); 
+export const QUOTE_MINT = MAINNET_BETA_MINT; // WRAPPED_SOL_MINT;

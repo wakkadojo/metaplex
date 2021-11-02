@@ -43,7 +43,7 @@ export const Banner = (props: {
       </div>
       <div
         id={'current-banner'}
-        style={{ backgroundImage: `url(${props.src})` }}
+        style={{ backgroundImage: `url(${props.src})`, backgroundSize: 'contain'}}
       >
         <span id={'gradient-banner'}></span>
         <div id="banner-inner">

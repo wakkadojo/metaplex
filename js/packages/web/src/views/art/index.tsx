@@ -36,7 +36,7 @@ export const ArtView = () => {
   if (art.type === ArtType.NFT) {
     badge = 'Unique';
   } else if (art.type === ArtType.Master) {
-    badge = 'NFT 0';
+    badge = 'Master';
     if (art.maxSupply !== undefined) {
       maxSupply = art.maxSupply.toString();
     } else {

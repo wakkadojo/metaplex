@@ -141,15 +141,15 @@ export const AuctionListView = () => {
   return (
     <>
       <Banner
-        src={'/main-banner.svg'}
-        headingText={'The amazing world of Metaplex.'}
-        subHeadingText={'Buy exclusive Metaplex NFTs.'}
+        src={'/cubecoin_logo.png'}
+        headingText={'The amazing world of Cubertron.'}
+        subHeadingText={'Buy exclusive CUBECOIN NFTs.'}
         actionComponent={<HowToBuyModal buttonClassName="secondary-btn" />}
         useBannerBg={true}
       />
       <Layout>
         <Content style={{ display: 'flex', flexWrap: 'wrap' }}>
-          <Col style={{ width: '100%', marginTop: 32 }}>
+          <Col style={{ height: '100%', marginTop: 32 }}>
             <Row>
               <Tabs
                 activeKey={activeKey}
