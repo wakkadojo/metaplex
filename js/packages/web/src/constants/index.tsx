@@ -5,5 +5,6 @@ export * from './labels';
 export * from './style';
 
 // const TESTNET_MINT = new PublicKey('Bv6BDKcBWa3pbDVzjuuiFZfVQPj3zB31uVcpGv87XioU'); 
-const MAINNET_BETA_MINT = new PublicKey('KUPoVbJmipJb1M7xzQEND5w7u1BbmBytu9wZ2QPjQx4'); 
-export const QUOTE_MINT = MAINNET_BETA_MINT; // WRAPPED_SOL_MINT;
+// const MAINNET_BETA_MINT = new PublicKey('KUPoVbJmipJb1M7xzQEND5w7u1BbmBytu9wZ2QPjQx4'); 
+export const RAYDIUM_MARKET_NAME="CUBE-USDC";
+export const QUOTE_MINT = new PublicKey('KUPoVbJmipJb1M7xzQEND5w7u1BbmBytu9wZ2QPjQx4');

@@ -9,14 +9,14 @@ import React, { FC } from 'react';
 import { ConfettiProvider } from './components/Confetti';
 import { AppLayout } from './components/Layout';
 import { LoaderProvider } from './components/Loader';
-import { CoingeckoProvider } from './contexts/coingecko';
+import { RaydiumAPIProvider } from './contexts/coingecko';
 
 export const Providers: FC = ({ children }) => {
   return (
     <ConnectionProvider>
       <WalletProvider>
         <AccountsProvider>
-          <CoingeckoProvider>
+          <RaydiumAPIProvider>
             <StoreProvider
               ownerAddress={process.env.NEXT_PUBLIC_STORE_OWNER_ADDRESS}
               storeAddress={process.env.NEXT_PUBLIC_STORE_ADDRESS}
@@ -29,7 +29,7 @@ export const Providers: FC = ({ children }) => {
                 </LoaderProvider>
               </MetaProvider>
             </StoreProvider>
-          </CoingeckoProvider>
+          </RaydiumAPIProvider>
         </AccountsProvider>
       </WalletProvider>
     </ConnectionProvider>
