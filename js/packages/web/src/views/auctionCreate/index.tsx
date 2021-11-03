@@ -54,6 +54,7 @@ import { useMeta } from '../../contexts';
 import useWindowDimensions from '../../utils/layout';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { SystemProgram } from '@solana/web3.js';
+import { QUOTE_NAME, QUOTE_TEXT_SYMBOL } from '../../constants';
 
 const { Option } = Select;
 const { Step } = Steps;
@@ -695,7 +696,7 @@ const CategoryStep = (props: {
       <Row className="call-to-action">
         <h2>List an item</h2>
         <p>
-          First time listing on Metaplex? <a>Read our sellers' guide.</a>
+          Want to take one of the things and exchange it for a different thing? We do that thing.
         </p>
       </Row>
       <Row justify={width < 768 ? 'center' : 'start'}>
@@ -714,6 +715,7 @@ const CategoryStep = (props: {
               </div>
             </Button>
           </Row>
+          {/*}
           <Row>
             <Button
               className="type-btn"
@@ -757,6 +759,7 @@ const CategoryStep = (props: {
               </div>
             </Button>
           </Row>
+          {*/}
           <Row>
             <Button
               className="type-btn"
@@ -764,9 +767,9 @@ const CategoryStep = (props: {
               onClick={() => props.confirm(AuctionCategory.Single)}
             >
               <div>
-                <div>Sell an Existing Item</div>
+                <div>Auction an Existing Item</div>
                 <div className="type-btn-description">
-                  Sell an existing item in your NFT collection, including Master
+                  Auction an existing item in your NFT collection, including Master
                   NFTs
                 </div>
               </div>
@@ -880,8 +883,8 @@ const InstantSaleStep = ({
               autoFocus
               className="input"
               placeholder="Price"
-              prefix="◎"
-              suffix="SOL"
+              prefix={QUOTE_TEXT_SYMBOL}
+              suffix={QUOTE_NAME}
               onChange={info =>
                 setAttributes({
                   ...attributes,
@@ -1067,8 +1070,8 @@ const PriceAuction = (props: {
                 autoFocus
                 className="input"
                 placeholder="Fixed Price"
-                prefix="◎"
-                suffix="SOL"
+                prefix={QUOTE_TEXT_SYMBOL}
+                suffix={QUOTE_NAME}
                 onChange={info =>
                   props.setAttributes({
                     ...props.attributes,
@@ -1092,8 +1095,8 @@ const PriceAuction = (props: {
                 autoFocus
                 className="input"
                 placeholder="Price"
-                prefix="◎"
-                suffix="SOL"
+                prefix={QUOTE_TEXT_SYMBOL}
+                suffix={QUOTE_NAME}
                 onChange={info =>
                   props.setAttributes({
                     ...props.attributes,
@@ -1113,8 +1116,8 @@ const PriceAuction = (props: {
               min={0}
               className="input"
               placeholder="Tick size in SOL"
-              prefix="◎"
-              suffix="SOL"
+              prefix={QUOTE_TEXT_SYMBOL}
+              suffix={QUOTE_NAME}
               onChange={info =>
                 props.setAttributes({
                   ...props.attributes,
@@ -1747,8 +1750,8 @@ const ParticipationStep = (props: {
               autoFocus
               className="input"
               placeholder="Fixed Price"
-              prefix="◎"
-              suffix="SOL"
+              prefix={QUOTE_TEXT_SYMBOL}
+              suffix={QUOTE_NAME}
               onChange={info =>
                 props.setAttributes({
                   ...props.attributes,

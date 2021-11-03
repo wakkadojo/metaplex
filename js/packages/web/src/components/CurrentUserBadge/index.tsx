@@ -5,25 +5,41 @@ import {
   ENDPOINTS,
   formatNumber,
   formatUSD,
+  fromLamports,
   Identicon,
   MetaplexModal,
   Settings,
   shortenAddress,
   useConnectionConfig,
   useNativeAccount,
+  useUserAccounts,
   useWalletModal,
+  useMint,
 } from '@oyster/common';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Button, Popover, Select } from 'antd';
 import { useMeta, useSolPrice } from '../../contexts';
 import { Link } from 'react-router-dom';
 import { SolCircle } from '../Custom';
+import { QUOTE_MINT, QUOTE_LAMPORTS, QUOTE_NAME } from '../../constants';
 
 ('@solana/wallet-adapter-base');
 
 const btnStyle: React.CSSProperties = {
   border: 'none',
   height: 40,
+};
+
+const tmp_get_mint_balance = () => {
+  const { userAccounts } = useUserAccounts();
+  const accounts = userAccounts?.filter(
+    acc => QUOTE_MINT.toBase58() === acc.info.mint.toBase58()
+  );
+  const balanceLamports = accounts.reduce(
+    (res, item) => (res += item.info.amount.toNumber()),
+    0,
+  );
+  return balanceLamports / QUOTE_LAMPORTS;
 };
 
 const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
@@ -211,7 +227,7 @@ export const CurrentUserBadge = (props: {
   if (!wallet || !publicKey) {
     return null;
   }
-  const balance = (account?.lamports || 0) / LAMPORTS_PER_SOL;
+  const balance = tmp_get_mint_balance(); // (account?.lamports || 0) / LAMPORTS_PER_SOL;
   const balanceInUSD = balance * solPrice;
 
   const iconStyle: React.CSSProperties = {
@@ -272,7 +288,7 @@ export const CurrentUserBadge = (props: {
                       color: '#FFFFFF',
                     }}
                   >
-                    {formatNumber.format(balance)} SOL
+                    {formatNumber.format(balance)} {QUOTE_NAME}
                   </span>
                   &nbsp;
                   <span
@@ -411,7 +427,7 @@ export const CurrentUserBadgeMobile = (props: {
   if (!wallet || !publicKey) {
     return null;
   }
-  const balance = (account?.lamports || 0) / LAMPORTS_PER_SOL;
+  const balance = tmp_get_mint_balance(); // (account?.lamports || 0) / LAMPORTS_PER_SOL;
   const balanceInUSD = balance * solPrice;
 
   const iconStyle: React.CSSProperties = {
@@ -451,9 +467,9 @@ export const CurrentUserBadgeMobile = (props: {
         <span className="balance-title">Balance</span>
         <span>
           <span className="sol-img-wrapper">
-            <img src="/sol.svg" width="10" />
+            <img src="/cubecoin_symbol.svg" width="12" />
           </span>{' '}
-          {formatNumber.format(balance)}&nbsp;&nbsp; SOL{' '}
+          {formatNumber.format(balance)}&nbsp;&nbsp; {' '}{QUOTE_NAME}
           <span
             style={{
               marginLeft: 5,

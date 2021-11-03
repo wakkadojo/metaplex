@@ -37,6 +37,7 @@ import {
 import { Connection } from '@solana/web3.js';
 import { settle } from '../../actions/settle';
 import { MintInfo } from '@solana/spl-token';
+import { QUOTE_TEXT_SYMBOL } from '../../constants';
 const { Content } = Layout;
 
 export const BillingView = () => {
@@ -424,7 +425,7 @@ export const InnerBillingView = ({
             <br />
             <div className="info-header">TOTAL AUCTION VALUE</div>
             <div className="escrow">
-              ◎
+              {QUOTE_TEXT_SYMBOL}
               {fromLamports(
                 totalWinnerPayments + participationPossibleTotal,
                 mint,
@@ -433,7 +434,7 @@ export const InnerBillingView = ({
             <br />
             <div className="info-header">TOTAL AUCTION REDEEMED VALUE</div>
             <div className="escrow">
-              ◎
+              {QUOTE_TEXT_SYMBOL}
               {fromLamports(
                 totalWinnerPayments +
                   participationPossibleTotal -
@@ -446,7 +447,7 @@ export const InnerBillingView = ({
               TOTAL COLLECTED BY ARTISTS AND AUCTIONEER
             </div>
             <div className="escrow">
-              ◎
+              {QUOTE_TEXT_SYMBOL}
               {fromLamports(
                 Object.values(payoutTickets).reduce(
                   (acc, el) => (acc += el.sum),
@@ -458,7 +459,7 @@ export const InnerBillingView = ({
             <br />
             <div className="info-header">TOTAL UNSETTLED</div>
             <div className="escrow">
-              ◎
+              {QUOTE_TEXT_SYMBOL}
               {fromLamports(
                 bidsToClaim.reduce(
                   (acc, el) => (acc += el.metadata.info.lastBid.toNumber()),
@@ -470,7 +471,7 @@ export const InnerBillingView = ({
             <br />
             <div className="info-header">TOTAL IN ESCROW</div>
             <div className="escrow">
-              {escrowBalance !== undefined ? `◎${escrowBalance}` : <Spin />}
+              {escrowBalance !== undefined ? `${QUOTE_TEXT_SYMBOL}${escrowBalance}` : <Spin />}
             </div>
             <br />
             {hasParticipation && (
@@ -479,7 +480,7 @@ export const InnerBillingView = ({
                   TOTAL UNREDEEMED PARTICIPATION FEES OUTSTANDING
                 </div>
                 <div className="outstanding-open-editions">
-                  ◎{fromLamports(participationUnredeemedTotal, mint)}
+                  {QUOTE_TEXT_SYMBOL}{fromLamports(participationUnredeemedTotal, mint)}
                 </div>
                 <br />
               </>
@@ -523,7 +524,7 @@ export const InnerBillingView = ({
                 title: 'Amount Paid',
                 dataIndex: 'amountPaid',
                 render: (val: number) => (
-                  <span>◎{fromLamports(val, mint)}</span>
+                  <span>{QUOTE_TEXT_SYMBOL}{fromLamports(val, mint)}</span>
                 ),
                 key: 'amountPaid',
               },

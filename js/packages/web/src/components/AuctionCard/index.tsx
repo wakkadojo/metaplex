@@ -59,6 +59,7 @@ import {
 import { useActionButtonContent } from './hooks/useActionButtonContent';
 import { endSale } from './utils/endSale';
 import { useInstantSaleState } from './hooks/useInstantSaleState';
+import { QUOTE_NAME, QUOTE_TEXT_SYMBOL } from '../../constants';
 
 async function calculateTotalCostOfRedeemingOtherPeoplesBids(
   connection: Connection,
@@ -537,6 +538,7 @@ export const AuctionCard = ({
                 displaySOL={true}
                 style={{ marginBottom: 0 }}
                 amount={formatAmount(balance.balance, 2)}
+                amountNum={balance.balance}
                 customPrefix={
                   <Identicon
                     address={wallet?.publicKey?.toBase58()}
@@ -636,10 +638,10 @@ export const AuctionCard = ({
                     style={{ fontSize: 16, lineHeight: '16px' }}
                     formatter={value =>
                       value
-                        ? `◎ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                        ? (QUOTE_TEXT_SYMBOL + ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','))
                         : ''
                     }
-                    placeholder={ minBid === 0 ? `Place a Bid` : `Bid ${minBid} SOL or more` }
+                    placeholder={ minBid === 0 ? `Place a Bid` : `Bid ${minBid} ${QUOTE_NAME} or more` }
                   />
                 </div>
                 <div className={'bid-buttons'}>
@@ -748,7 +750,7 @@ export const AuctionCard = ({
         )}
         {tickSizeInvalid && tickSize && (
           <span style={{ color: 'red' }}>
-            Tick size is ◎{tickSize.toNumber() / LAMPORTS_PER_SOL}.
+            Tick size is {QUOTE_TEXT_SYMBOL}{tickSize.toNumber() / LAMPORTS_PER_SOL}.
           </span>
         )}
         {gapBidInvalid && (
@@ -780,7 +782,7 @@ export const AuctionCard = ({
             fontSize: '2rem',
           }}
         >
-          Your bid of ◎ {formatTokenAmount(lastBid?.amount, mintInfo)} was
+          Your bid of {QUOTE_TEXT_SYMBOL} {formatTokenAmount(lastBid?.amount, mintInfo)} was
           successful
         </p>
         <Button onClick={() => setShowBidPlaced(false)} className="overlay-btn">
@@ -858,7 +860,7 @@ export const AuctionCard = ({
           Warning: There may be some items in this auction that still are
           required by the auction for printing bidders&apos; limited or open
           edition NFTs. If you wish to withdraw them, you are agreeing to foot
-          the cost of up to an estimated ◎
+          the cost of up to an estimated {QUOTE_TEXT_SYMBOL}
           <b>{(printingCost || 0) / LAMPORTS_PER_SOL}</b> plus transaction fees
           to redeem their bids for them right now.
         </h3>

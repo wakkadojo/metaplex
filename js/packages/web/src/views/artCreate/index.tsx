@@ -63,7 +63,7 @@ export const ArtCreateView = () => {
   const [nftCreateProgress, setNFTcreateProgress] = useState<number>(0);
 
   const [step, setStep] = useState<number>(0);
-  const [stepsVisible, setStepsVisible] = useState<boolean>(true);
+  const [stepsVisible, setStepsVisible] = useState<boolean>(false);
   const [isMinting, setMinting] = useState<boolean>(false);
   const [nft, setNft] =
     useState<{ metadataAccount: StringPublicKey } | undefined>(undefined);
@@ -238,12 +238,9 @@ const CategoryStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Create a new item</h2>
-        <p>
-          First time creating on Metaplex?{' '}
-          <a href="#">Read our creators’ guide.</a>
-        </p>
+        <h2>Available in the year 2000.</h2>
       </Row>
+      { /*
       <Row justify={width < 768 ? 'center' : 'start'}>
         <Col>
           <Row>
@@ -308,6 +305,7 @@ const CategoryStep = (props: {
           </Row>
         </Col>
       </Row>
+      */}
     </>
   );
 };

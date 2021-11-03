@@ -18,7 +18,7 @@ import {
   useMint,
 } from '@oyster/common';
 import { AuctionView, useAuctions } from '../../hooks';
-import { QUOTE_MINT } from '../../constants';
+import { QUOTE_MINT, QUOTE_TEXT_SYMBOL } from '../../constants';
 import { MintInfo } from '@solana/spl-token';
 
 const { Content } = Layout;
@@ -200,14 +200,14 @@ const MemoizedBar = React.memo(
 
     const histoData = {
       labels: [
-        '◎ [0 - 5)',
-        '◎ [5 - 20)',
-        '◎ [20 - 50)',
-        '◎ [50 - 100)',
-        '◎ [100 - 500)',
-        '◎ [500 - 1000)',
-        '◎ [1000 - 10000)',
-        '◎ [10000 -',
+        `${QUOTE_TEXT_SYMBOL} [0 - 5)`,
+        `${QUOTE_TEXT_SYMBOL} [5 - 20)`,
+        `${QUOTE_TEXT_SYMBOL} [20 - 50)`,
+        `${QUOTE_TEXT_SYMBOL} [50 - 100)`,
+        `${QUOTE_TEXT_SYMBOL} [100 - 500)`,
+        `${QUOTE_TEXT_SYMBOL} [500 - 1000)`,
+        `${QUOTE_TEXT_SYMBOL} [1000 - 10000)`,
+        `${QUOTE_TEXT_SYMBOL} [10000 -`,
       ],
       datasets: [
         {
@@ -363,7 +363,7 @@ function InnerAnalytics({ mint }: { mint: MintInfo }) {
         <h3>That minted NFTs: {Object.values(usersWithMetadata).length}</h3>
         <h1>Sale Info</h1>
         <h3>
-          Total Sales: ◎
+          Total Sales: {QUOTE_TEXT_SYMBOL}
           {fromLamports(
             sortedSales.reduce((acc, r) => (acc += r), 0),
             mint,
@@ -371,8 +371,8 @@ function InnerAnalytics({ mint }: { mint: MintInfo }) {
         </h3>
         <MemoizedBar sortedSales={sortedSales} mint={mint} />
 
-        <h3>Highest Sale: ◎ {fromLamports(highestSale, mint)}</h3>
-        <h3>Average Sale: ◎ {fromLamports(averageSale, mint)}</h3>
+        <h3>Highest Sale: {QUOTE_TEXT_SYMBOL} {fromLamports(highestSale, mint)}</h3>
+        <h3>Average Sale: {QUOTE_TEXT_SYMBOL} {fromLamports(averageSale, mint)}</h3>
         <h1>Auction Info</h1>
         <h3>Average Bids per Auction: {averageBids}</h3>
         <MemoizedPie byType={byType} />
