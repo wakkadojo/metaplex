@@ -4,7 +4,7 @@
 FROM node:14.17.3-alpine as build
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat git
+RUN apk add --no-cache libc6-compat git python pkgconfig
 
 # Set the working directory
 WORKDIR /app
@@ -17,7 +17,7 @@ RUN yarn install --frozen-lockfile
 RUN yarn bootstrap
 
 # HERE ADD YOUR STORE WALLET ADDRESS
-ENV REACT_APP_STORE_OWNER_ADDRESS_ADDRESS=""
+ENV REACT_APP_STORE_OWNER_ADDRESS_ADDRESS=EdZwBqVjHAtiAvSRcRrucRRPJT6LSUTywubGMaDrt3Rb
 
 # Generate the build of the application
 RUN yarn build
