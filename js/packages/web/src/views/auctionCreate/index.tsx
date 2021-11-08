@@ -802,7 +802,7 @@ const InstantSaleStep = ({
 
   const isLimitedEdition =
     attributes.instantSaleType === InstantSaleType.Limited;
-  const shouldRenderSelect = attributes.items.length > 0;
+  const shouldRenderSelect = false; // attributes.items.length > 0;
 
   return (
     <>
@@ -1115,7 +1115,7 @@ const PriceAuction = (props: {
               type="number"
               min={0}
               className="input"
-              placeholder="Tick size in SOL"
+              placeholder={"Tick size in " + QUOTE_NAME}
               prefix={QUOTE_TEXT_SYMBOL}
               suffix={QUOTE_NAME}
               onChange={info =>

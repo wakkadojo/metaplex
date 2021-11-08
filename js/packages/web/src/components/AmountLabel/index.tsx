@@ -3,6 +3,7 @@ import { Statistic } from 'antd';
 import { useSolPrice } from '../../contexts';
 import { formatUSD } from '@oyster/common';
 import { SolCircle } from '../Custom';
+import { QUOTE_NAME } from '../../constants';
 import { isNull } from 'lodash';
 
 interface IAmountLabel {
@@ -51,7 +52,7 @@ export const AmountLabel = (props: IAmountLabel) => {
           style={style}
           className="create-statistic"
           title={title || ''}
-          value={`${amount}${displaySOL ? ' SOL' : ''}`}
+          value={`${amount}${displaySOL ? ` ${QUOTE_NAME}` : ''}`}
           prefix={customPrefix || <SolCircle iconSize={iconSize} />}
         />
       )}
