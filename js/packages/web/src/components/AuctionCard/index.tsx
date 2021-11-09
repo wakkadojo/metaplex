@@ -409,9 +409,16 @@ export const AuctionCard = ({
   const isOpenEditionSale =
     auctionView.auction.info.bidState.type === BidStateType.OpenEdition;
 
-  const isBidderPotEmpty = Boolean(auctionView.myBidderPot?.info.emptied);
+  // const isBidderPotEmpty = Boolean(auctionView.myBidderPot?.info.emptied);
+  // console.log(auctionView.items[0][0].metadata.info.updateAuthority, auctionView.auctionManager.pubkey)
+  const isItemNotInAuction = 
+    auctionView.items[0][0].metadata.info.updateAuthority !== auctionView.auctionManager.pubkey;
+
+  // XXX FIX HERE: IS BIDDER POT EMPTY IS TRUE WHEN POT TOKENS WERE TAKEN BUT TOKEN WAS NOT
+  // console.log(auctionView);
   const doesInstantSaleHasNoItems =
-    isBidderPotEmpty &&
+    // isBidderPotEmpty &&
+    isItemNotInAuction &&
     auctionView.auction.info.bidState.max.toNumber() === bids.length;
 
   const shouldHideInstantSale =
@@ -423,7 +430,9 @@ export const AuctionCard = ({
   const shouldHide =
     shouldHideInstantSale ||
     (auctionView.vault.info.state === VaultState.Deactivated &&
-      isBidderPotEmpty);
+      isItemNotInAuction
+      // isBidderPotEmpty
+    );
 
   const { canEndInstantSale, isAlreadyBought } =
     useInstantSaleState(auctionView);

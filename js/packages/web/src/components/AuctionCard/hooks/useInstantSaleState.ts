@@ -29,6 +29,10 @@ export const useInstantSaleState = (
   const isAlreadyBought = !!(myBidderPot && isBidCanceled);
   const canClaimItem = !!(isOwner && isAuctionEnded);
   const canEndInstantSale = isOwner && !isAuctionEnded;
+  // case 1: bug          false,   undefined,      false,         true,                  false,           false,        false
+  // case 2: pre-claimed  false 
+  // case e: post-claimed false    undefined,      false,         true,                  false,           false,        false
+  // console.log('LOLOL', isOwner, isAuctionEnded, isBidCanceled, canClaimPurchasedItem, isAlreadyBought, canClaimItem, canEndInstantSale);
 
   return {
     isInstantSale,
